@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Nexus Technologies
+# This file is distributed under the same license as the Nexus Gateway
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nexus Gateway \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-05 17:40+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/index.rst:11
+msgid "Concepts"
+msgstr ""
+
+#: ../../source/index.rst:20
+msgid "Guides"
+msgstr ""
+
+#: ../../source/index.rst:2
+msgid "Nexus Gateway Documentation"
+msgstr ""
+
+#: ../../source/index.rst:4
+msgid ""
+"Welcome to the official documentation for **Nexus Gateway** — a "
+"lightweight, developer-first API gateway for managing authentication, "
+"rate limiting, and traffic routing across microservices."
+msgstr ""
+
+#: ../../source/index.rst:8
+msgid ""
+"This documentation covers core concepts, configuration guides, and "
+"integration patterns for teams building on the Nexus Gateway platform."
+msgstr ""
+

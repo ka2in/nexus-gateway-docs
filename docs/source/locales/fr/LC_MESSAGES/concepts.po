@@ -1,0 +1,560 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Nexus Technologies
+# This file is distributed under the same license as the Nexus Gateway
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nexus Gateway \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-05 17:40+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/concepts/authentication.rst:2
+msgid "Authentication"
+msgstr "Authentification"
+
+#: ../../source/concepts/authentication.rst:4
+msgid ""
+"Nexus Gateway supports multiple authentication mechanisms and can enforce"
+" them independently per route. Authentication is handled at the gateway "
+"level, so backend services receive only verified requests."
+msgstr ""
+"Nexus Gateway prend en charge plusieurs mécanismes d'authentification et "
+"peut les appliquer indépendamment par route. L'authentification est gérée "
+"au niveau de la passerelle, de sorte que les services backend ne reçoivent "
+"que des requêtes vérifiées."
+
+#: ../../source/concepts/authentication.rst:9
+msgid "Supported Authentication Methods"
+msgstr "Méthodes d'authentification prises en charge"
+
+#: ../../source/concepts/authentication.rst:12
+msgid "API Keys"
+msgstr "Clés API"
+
+#: ../../source/concepts/authentication.rst:14
+msgid ""
+"API key authentication is the simplest method supported by Nexus Gateway."
+" Clients include a key in the request header, and the gateway validates "
+"it against a configured key store."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:18
+msgid ""
+"By default, the gateway reads the key from the ``X-API-Key`` header. This"
+" header name is configurable per route."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:21
+msgid ""
+"API keys are suitable for server-to-server integrations where the client "
+"environment is controlled and the key can be stored securely."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:25
+msgid "JWT Authentication"
+msgstr "Authentification JWT"
+
+#: ../../source/concepts/authentication.rst:27
+msgid ""
+"Nexus Gateway can validate JSON Web Tokens issued by any compatible "
+"identity provider. The gateway verifies the token signature, expiry, and "
+"configurable claims before forwarding the request."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:31
+msgid ""
+"Supported signing algorithms are ``RS256``, ``RS384``, ``RS512``, "
+"``ES256``, and ``HS256``. The public key or JWKS endpoint is configured "
+"in the route definition."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:48
+msgid "OAuth 2.0 Token Introspection"
+msgstr "Introspection de jeton OAuth 2.0"
+
+#: ../../source/concepts/authentication.rst:50
+msgid ""
+"For deployments using an external authorisation server, Nexus Gateway "
+"supports OAuth 2.0 token introspection. The gateway calls the "
+"introspection endpoint with the bearer token and grants or denies the "
+"request based on the response."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:54
+msgid ""
+"This method adds latency because each request requires a call to the "
+"authorisation server. Use response caching to reduce the impact on high-"
+"traffic routes."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:59
+msgid "How Authentication Failures Are Handled"
+msgstr "Gestion des échecs d'authentification"
+
+#: ../../source/concepts/authentication.rst:61
+msgid ""
+"When a request fails authentication, Nexus Gateway returns a ``401 "
+"Unauthorized`` response. The response body contains a JSON error object "
+"with a machine-readable error code and a human-readable message."
+msgstr ""
+"Lorsqu'une requête échoue à l'authentification, Nexus Gateway renvoie une "
+"réponse ``401 Unauthorized``. Le corps de la réponse contient un objet "
+"d'erreur JSON avec un code d'erreur lisible par machine et un message "
+"lisible par un humain."
+
+#: ../../source/concepts/authentication.rst:73
+msgid ""
+"The ``request_id`` field is included in all error responses and can be "
+"used to trace the request in the gateway logs."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:77
+msgid ""
+"Do not expose detailed authentication error messages to end users in "
+"production. Use the ``error`` code in your client application to display "
+"appropriate user-facing messages, and log the full response server-side."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:82
+msgid "Combining Authentication with Authorisation"
+msgstr "Combiner authentification et autorisation"
+
+#: ../../source/concepts/authentication.rst:84
+msgid ""
+"Authentication confirms who the client is. Authorisation determines what "
+"the client is allowed to do. Nexus Gateway handles both."
+msgstr ""
+"L'authentification confirme l'identité du client. L'autorisation détermine "
+"ce que le client est autorisé à faire. Nexus Gateway gère les deux."
+
+#: ../../source/concepts/authentication.rst:87
+msgid ""
+"After a successful authentication check, the gateway can evaluate "
+"authorisation policies based on token claims, API key metadata, or "
+"request attributes such as HTTP method and path."
+msgstr ""
+
+#: ../../source/concepts/authentication.rst:91
+msgid ""
+"Authorisation policies are defined separately from authentication "
+"configuration and can be reused across multiple routes."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:2
+msgid "Rate Limiting"
+msgstr "Limitation de débit"
+
+#: ../../source/concepts/rate-limiting.rst:4
+msgid ""
+"Rate limiting controls how many requests a client can make to a route "
+"within a defined time window. Nexus Gateway enforces rate limits at the "
+"gateway level, before requests reach backend services."
+msgstr ""
+"La limitation de débit contrôle le nombre de requêtes qu'un client peut "
+"envoyer à une route dans une fenêtre de temps définie. Nexus Gateway "
+"applique ces limites au niveau de la passerelle, avant que les requêtes "
+"n'atteignent les services backend."
+
+#: ../../source/concepts/rate-limiting.rst:9
+msgid "Why Rate Limiting Matters"
+msgstr "Pourquoi la limitation de débit est importante"
+
+#: ../../source/concepts/rate-limiting.rst:11
+msgid ""
+"Without rate limiting, a single misbehaving client — whether due to a "
+"bug, misconfiguration, or deliberate abuse — can consume enough resources"
+" to degrade service for all other clients."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:15
+msgid "Rate limiting protects your infrastructure by:"
+msgstr "La limitation de débit protège votre infrastructure en :"
+
+#: ../../source/concepts/rate-limiting.rst:17
+msgid "Preventing individual clients from overwhelming backend services."
+msgstr "Empêchant les clients individuels de saturer les services backend."
+
+#: ../../source/concepts/rate-limiting.rst:18
+msgid "Reducing the impact of denial-of-service attacks."
+msgstr "Réduisant l'impact des attaques par déni de service."
+
+#: ../../source/concepts/rate-limiting.rst:19
+msgid "Enforcing usage quotas for clients on different pricing tiers."
+msgstr "Appliquant des quotas d'utilisation pour les clients sur différents niveaux tarifaires."
+
+#: ../../source/concepts/rate-limiting.rst:20
+msgid "Smoothing out traffic spikes caused by batch jobs or retry storms."
+msgstr "Lissant les pics de trafic causés par des traitements par lot ou des tempêtes de relance."
+
+#: ../../source/concepts/rate-limiting.rst:23
+msgid "How Nexus Gateway Counts Requests"
+msgstr "Comment Nexus Gateway compte les requêtes"
+
+#: ../../source/concepts/rate-limiting.rst:25
+msgid ""
+"Nexus Gateway uses a **sliding window** algorithm by default. The window "
+"moves continuously rather than resetting at fixed intervals, which "
+"prevents bursts of traffic at window boundaries."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:29
+msgid ""
+"A fixed window option is also available for use cases where predictable "
+"reset times are required, such as billing-cycle quota enforcement."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:33
+msgid "Rate Limit Identifiers"
+msgstr "Identifiants de limite de débit"
+
+#: ../../source/concepts/rate-limiting.rst:35
+msgid ""
+"Rate limits are applied per identifier. The identifier determines how the"
+" gateway groups requests for counting purposes. Supported identifiers "
+"are:"
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:38
+msgid ""
+"**IP address** — limits requests from a single IP. Useful as a baseline "
+"protection layer."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:40
+msgid ""
+"**API key** — limits requests per authenticated client. The most common "
+"approach for API products."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:42
+msgid ""
+"**JWT claim** — limits requests based on a value from the token payload, "
+"such as a ``sub`` or ``org_id`` claim."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:44
+msgid ""
+"**Header value** — limits requests based on any request header. Useful "
+"for custom client identification schemes."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:47
+msgid ""
+"Identifiers can be combined. For example, you can apply both a per-IP "
+"limit and a per-API-key limit to the same route. Both limits are enforced"
+" independently."
+msgstr ""
+
+#: ../../source/concepts/rate-limiting.rst:52
+msgid "Rate Limit Response Headers"
+msgstr "En-têtes de réponse de limite de débit"
+
+#: ../../source/concepts/routing.rst:2
+msgid "Request Routing"
+msgstr "Routage des requêtes"
+
+#: ../../source/concepts/routing.rst:4
+msgid ""
+"Routing is the process of matching an incoming request to a backend "
+"service and forwarding it. In Nexus Gateway, routing rules are defined as"
+" a list of routes in the configuration file. The gateway evaluates routes"
+" in order and forwards the request to the first matching route."
+msgstr ""
+"Le routage est le processus qui consiste à faire correspondre une requête "
+"entrante à un service backend et à la transmettre. Dans Nexus Gateway, les "
+"règles de routage sont définies sous forme de liste de routes dans le "
+"fichier de configuration. La passerelle évalue les routes dans l'ordre et "
+"transmet la requête à la première route correspondante."
+
+#: ../../source/concepts/routing.rst:10
+msgid "Route Matching"
+msgstr "Correspondance de routes"
+
+#: ../../source/concepts/routing.rst:12
+msgid ""
+"Each route defines one or more match conditions. A request must satisfy "
+"all conditions on a route to be considered a match."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:30
+msgid "Route Priority"
+msgstr "Priorité des routes"
+
+#: ../../source/concepts/routing.rst:32
+msgid ""
+"Routes are evaluated in the order they appear in the configuration file. "
+"The first route that matches the incoming request is used. Subsequent "
+"routes are not evaluated."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:36
+msgid ""
+"This means more specific routes should be defined before broader ones. "
+"For example, a route matching ``/api/v1/users/admin`` exactly should "
+"appear before a route matching the ``/api/v1/users`` prefix."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:51
+msgid ""
+"If these routes were reversed, requests to ``/api/v1/users/admin`` would "
+"be matched by the prefix route first and routed to the wrong upstream."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:55
+msgid "Upstream Configuration"
+msgstr "Configuration de l'amont"
+
+#: ../../source/concepts/routing.rst:57
+msgid ""
+"Each route must specify an upstream — the backend service address to "
+"which matching requests are forwarded."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:60
+msgid "Nexus Gateway supports three upstream formats:"
+msgstr "Nexus Gateway prend en charge trois formats d'amont :"
+
+#: ../../source/concepts/routing.rst:62
+msgid ""
+"**Host and port** — ``orders-service:8080`` — for services reachable by "
+"hostname within the same network."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:64
+msgid ""
+"**IP address and port** — ``10.0.1.15:3000`` — for services referenced by"
+" IP."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:66
+msgid ""
+"**URL** — ``https://api.partner.example.com`` — for external upstreams or"
+" when TLS is required on the upstream connection."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:70
+msgid "Load Balancing"
+msgstr "Équilibrage de charge"
+
+#: ../../source/concepts/routing.rst:72
+msgid ""
+"When a route's upstream resolves to multiple instances — for example, via"
+" DNS round-robin or a service registry integration — Nexus Gateway "
+"distributes traffic across them using a configurable load balancing "
+"strategy."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:76
+msgid "The available strategies are:"
+msgstr "Les stratégies disponibles sont :"
+
+#: ../../source/concepts/routing.rst:78
+msgid ""
+"**Round robin** (default) — requests are distributed evenly across all "
+"healthy instances in rotation."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:80
+msgid ""
+"**Least connections** — each new request is sent to the instance with the"
+" fewest active connections."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:82
+msgid ""
+"**IP hash** — the client IP address is hashed to select an instance, "
+"ensuring that requests from the same client consistently reach the same "
+"upstream. Useful for stateful applications."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:87
+msgid "Health Checks"
+msgstr "Vérifications de santé"
+
+#: ../../source/concepts/routing.rst:89
+msgid ""
+"Nexus Gateway performs periodic health checks against upstream instances."
+" Instances that fail a health check are removed from the routing pool "
+"until they recover."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:93
+msgid ""
+"Health checks are configured per upstream and support both HTTP and TCP "
+"probe types."
+msgstr ""
+
+#: ../../source/concepts/routing.rst:97
+msgid ""
+"If all instances of an upstream fail their health checks simultaneously, "
+"Nexus Gateway returns a ``503 Service Unavailable`` response to clients "
+"until at least one instance recovers."
+msgstr ""
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:2
+msgid "What is Nexus Gateway?"
+msgstr "Qu'est-ce que Nexus Gateway ?"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:4
+msgid ""
+"Nexus Gateway is an open-source API gateway designed for teams running "
+"microservice architectures. It acts as a single entry point for all "
+"client requests, handling cross-cutting concerns such as authentication, "
+"rate limiting, and request routing before traffic reaches your backend "
+"services."
+msgstr ""
+"Nexus Gateway est une passerelle API open-source conçue pour les équipes "
+"travaillant avec des architectures de microservices. Elle constitue un point "
+"d'entrée unique pour toutes les requêtes clients, gérant des préoccupations "
+"transversales telles que l'authentification, la limitation de débit et le "
+"routage des requêtes avant que le trafic n'atteigne vos services backend."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:9
+msgid "Nexus Gateway architecture diagram"
+msgstr "Schéma d'architecture de Nexus Gateway"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:13
+msgid "*The Nexus Gateway sits between clients and your backend services.*"
+msgstr "*Nexus Gateway s'intercale entre les clients et vos services backend.*"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:16
+msgid "Core Responsibilities"
+msgstr "Responsabilités principales"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:18
+msgid ""
+"An API gateway is responsible for tasks that would otherwise need to be "
+"implemented individually in every service. Nexus Gateway centralises "
+"these concerns so your services can focus on business logic."
+msgstr ""
+"Une passerelle API est responsable de tâches qui devraient autrement être "
+"implémentées individuellement dans chaque service. Nexus Gateway centralise "
+"ces préoccupations afin que vos services puissent se concentrer sur la "
+"logique métier."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:22
+msgid "The main responsibilities of Nexus Gateway are:"
+msgstr "Les principales responsabilités de Nexus Gateway sont :"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:24
+msgid ""
+"**Traffic routing** — directing incoming requests to the correct backend "
+"service based on path, headers, or other request attributes."
+msgstr ""
+"**Routage du trafic** — direction des requêtes entrantes vers le bon service "
+"backend en fonction du chemin, des en-têtes ou d'autres attributs de requête."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:26
+msgid ""
+"**Authentication and authorisation** — verifying the identity of clients "
+"and enforcing access policies before requests reach your services."
+msgstr ""
+"**Authentification et autorisation** — vérification de l'identité des clients "
+"et application des politiques d'accès avant que les requêtes n'atteignent "
+"vos services."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:28
+msgid ""
+"**Rate limiting** — protecting backend services from traffic spikes and "
+"abuse by controlling how many requests a client can make over a given "
+"period."
+msgstr ""
+"**Limitation de débit** — protection des services backend contre les pics de "
+"trafic et les abus en contrôlant le nombre de requêtes qu'un client peut "
+"effectuer sur une période donnée."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:30
+msgid ""
+"**Request and response transformation** — modifying headers, query "
+"parameters, or payloads in transit when needed."
+msgstr ""
+"**Transformation des requêtes et des réponses** — modification des en-têtes, "
+"des paramètres de requête ou des charges utiles en transit si nécessaire."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:32
+msgid ""
+"**Observability** — collecting metrics, logs, and traces across all "
+"incoming traffic from a single point."
+msgstr ""
+"**Observabilité** — collecte des métriques, journaux et traces de l'ensemble "
+"du trafic entrant depuis un point unique."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:36
+msgid "How Nexus Gateway Fits Into Your Architecture"
+msgstr "Comment Nexus Gateway s'intègre dans votre architecture"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:38
+msgid ""
+"In a typical deployment, Nexus Gateway runs at the edge of your "
+"infrastructure, directly behind your load balancer or ingress controller."
+" All external traffic passes through the gateway before reaching any "
+"internal service."
+msgstr ""
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:42
+msgid ""
+"This placement gives you a consistent enforcement layer for security and "
+"operational policies without modifying individual services."
+msgstr ""
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:45
+msgid ""
+"Nexus Gateway is stateless by design. Configuration is defined in a YAML "
+"file or via the Admin API, and the gateway reads this configuration at "
+"startup or when a reload is triggered."
+msgstr ""
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:50
+msgid "When to Use Nexus Gateway"
+msgstr "Quand utiliser Nexus Gateway"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:52
+msgid "Nexus Gateway is a good fit if your team:"
+msgstr "Nexus Gateway est adapté si votre équipe :"
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:54
+msgid ""
+"Runs three or more backend services that share authentication "
+"requirements."
+msgstr "Exploite trois services backend ou plus partageant des exigences d'authentification."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:55
+msgid "Needs fine-grained rate limiting per client, endpoint, or plan tier."
+msgstr "A besoin d'une limitation de débit granulaire par client, point de terminaison ou niveau tarifaire."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:56
+msgid ""
+"Wants a single place to manage routing rules without modifying service "
+"code."
+msgstr "Souhaite un endroit unique pour gérer les règles de routage sans modifier le code des services."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:57
+msgid "Requires audit logs of all API traffic for compliance purposes."
+msgstr "Nécessite des journaux d'audit de tout le trafic API à des fins de conformité."
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:59
+msgid ""
+"If you are running a single service with straightforward access "
+"requirements, a dedicated gateway may introduce unnecessary complexity. A"
+" simple reverse proxy may be sufficient in that case."
+msgstr ""
+
+#: ../../source/concepts/what-is-nexus-gateway.rst:64
+msgid ""
+"Nexus Gateway is not a service mesh. It handles north-south traffic "
+"(client to service), not east-west traffic (service to service). For "
+"east-west communication patterns, consider a service mesh such as Istio "
+"or Linkerd alongside Nexus Gateway."
+msgstr ""

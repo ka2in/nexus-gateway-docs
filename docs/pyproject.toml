@@ -1,0 +1,2 @@
+[tool.sphinx-autobuild]
+ignore = ["*/locales/*"]

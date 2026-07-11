@@ -1,0 +1,304 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2024, Nexus Technologies
+# This file is distributed under the same license as the Nexus Gateway
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Nexus Gateway \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-05 17:40+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: ../../source/guides/configuring-routes.rst:2
+msgid "Configuring Routes"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:4
+msgid ""
+"This guide explains how to define routes in Nexus Gateway for real-world "
+"service deployments. It covers path matching, authentication, rate "
+"limiting, and header manipulation in a single configuration workflow."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:9
+msgid "A Route for a Real Service"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:11
+msgid ""
+"The following example shows a complete route definition for a production "
+"API endpoint. It combines path matching, JWT authentication, and rate "
+"limiting in a single route block:"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:34
+msgid "Walk through each field:"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:36
+msgid ""
+"``name`` — a unique identifier for the route, used in logs and the Admin "
+"API."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:38
+msgid "``path`` — the path prefix to match against incoming requests."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:39
+msgid ""
+"``methods`` — restricts the route to the listed HTTP methods. Requests "
+"using other methods receive a ``405 Method Not Allowed`` response."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:41
+msgid "``upstream`` — the backend service address."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:42
+msgid ""
+"``auth`` — the authentication configuration. Here we use JWT with a JWKS "
+"endpoint."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:44
+msgid ""
+"``rate_limit`` — applies a sliding window limit of 200 requests per "
+"minute, counted per unique ``sub`` claim in the JWT."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:48
+msgid "Manipulating Request Headers"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:50
+msgid ""
+"Nexus Gateway can add, remove, or rewrite headers before forwarding a "
+"request to the upstream service. This is useful for passing "
+"authentication context, adding tracing headers, or removing headers that "
+"should not reach backend services."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:70
+msgid ""
+"The ``set`` block adds or overwrites headers. The ``remove`` block "
+"deletes headers from the forwarded request entirely."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:74
+msgid "Handling Multiple Upstreams for the Same Path"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:76
+msgid ""
+"Some deployments require traffic splitting — for example, routing a "
+"percentage of traffic to a canary deployment while the rest goes to the "
+"stable version."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:80
+msgid "Nexus Gateway supports weighted upstream groups for this pattern:"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:94
+#, python-format
+msgid ""
+"In this configuration, 90% of traffic goes to the stable deployment and "
+"10% to the canary. Adjust the weights to gradually shift traffic as "
+"confidence in the canary grows."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:99
+msgid ""
+"Weights are relative, not percentages. A configuration with weights of "
+"``9`` and ``1`` produces the same distribution as ``90`` and ``10``."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:103
+msgid "Testing Routes Without Restarting"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:105
+msgid ""
+"After making changes to ``nexus.yaml``, you can reload the configuration "
+"without restarting the gateway process by sending a reload signal to the "
+"Admin API:"
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:113
+msgid ""
+"The gateway validates the new configuration before applying it. If "
+"validation fails — for example, due to a missing required field or an "
+"invalid upstream address — the gateway logs the error and continues "
+"running with the previous configuration. No traffic is disrupted."
+msgstr ""
+
+#: ../../source/guides/configuring-routes.rst:118
+msgid ""
+"This makes it safe to iterate on your configuration in production "
+"environments."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:2
+msgid "Getting Started"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:4
+msgid ""
+"This guide walks you through installing Nexus Gateway, writing your first"
+" configuration file, and routing a request to a backend service. By the "
+"end, you will have a working gateway instance running locally."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:9
+msgid "Prerequisites"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:11
+msgid "Before you begin, make sure you have the following:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:13
+msgid "A machine running Linux, macOS, or Windows with WSL2."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:14
+msgid ""
+"Docker installed and running, or a Go toolchain (version 1.21 or later) "
+"if you prefer to build from source."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:16
+msgid "A terminal and basic familiarity with YAML files."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:18
+msgid ""
+"You do not need any existing infrastructure. The getting started guide "
+"uses a local mock service as the upstream target."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:22
+msgid "Step 1 — Download Nexus Gateway"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:24
+msgid "Pull the official Docker image:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:30
+msgid "Verify the image is available:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:36
+msgid "You should see the ``2.4`` tag listed in the output."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:39
+msgid "Step 2 — Create a Configuration File"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:41
+msgid ""
+"Create a file named ``nexus.yaml`` in your working directory with the "
+"following content:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:56
+msgid ""
+"This configuration starts the gateway on port ``8080`` and routes all "
+"requests to ``/hello`` to the public ``httpbin.org`` service, which we "
+"use here as a convenient upstream for testing."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:61
+msgid "Step 3 — Start the Gateway"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:63
+msgid "Run the gateway with your configuration file:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:73
+msgid ""
+"You should see startup logs indicating the gateway has loaded your "
+"configuration and is listening on port ``8080``."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:77
+msgid "Step 4 — Send a Test Request"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:79
+msgid "In a new terminal window, send a request through the gateway:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:85
+msgid ""
+"The gateway receives your request, matches it to ``hello-route``, and "
+"forwards it to ``httpbin.org``. The response from ``httpbin.org`` is "
+"returned to your terminal."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:89
+msgid ""
+"If you see a JSON response from httpbin, your gateway is working "
+"correctly."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:92
+msgid "Step 5 — Check the Admin API"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:94
+msgid ""
+"Nexus Gateway exposes an Admin API on the configured ``admin_port``. Use "
+"it to inspect the current configuration and route status:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:101
+msgid ""
+"The response lists all configured routes and their current status. This "
+"endpoint is useful for verifying that configuration changes have been "
+"applied correctly."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:106
+msgid "Next Steps"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:108
+msgid ""
+"Now that you have a running gateway, explore the following topics to "
+"continue building your configuration:"
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:111
+msgid ""
+":doc:`configuring-routes` — learn how to define routes for your own "
+"services, add authentication, and apply rate limits."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:113
+msgid ""
+":doc:`../concepts/authentication` — understand the authentication methods"
+" Nexus Gateway supports."
+msgstr ""
+
+#: ../../source/guides/getting-started.rst:115
+msgid ""
+":doc:`../concepts/rate-limiting` — configure rate limits to protect your "
+"backend services."
+msgstr ""
+

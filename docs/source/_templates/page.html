@@ -1,0 +1,72 @@
+{% extends "!page.html" %}
+
+{# Custom footer for Nexus Gateway docs #}
+{# All user-facing strings wrapped in _() for gettext extraction #}
+
+{% block footer %}
+
+<footer class="nexus-footer">
+  <div class="nexus-footer__inner">
+
+    <div class="nexus-footer__brand">
+      <strong>Nexus Gateway</strong>
+      <span>{{ _('Version') }} {{ release }}</span>
+    </div>
+
+    <div class="nexus-footer__links">
+      <span class="nexus-footer__label">{{ _('Resources') }}</span>
+      <a href="https://github.com/nexustech/gateway">{{ _('Source Code') }}</a>
+      <a href="https://nexustech.example.com/changelog">{{ _('Changelog') }}</a>
+      <a href="https://nexustech.example.com/support">{{ _('Support') }}</a>
+    </div>
+
+    <div class="nexus-footer__legal">
+      {{ _('Released under the Apache 2.0 License.') }}
+      {{ _('Documentation licensed under CC BY 4.0.') }}
+    </div>
+
+  </div>
+</footer>
+
+<style>
+.nexus-footer {
+  border-top: 1px solid var(--color-foreground-border);
+  margin-top: 2rem;
+  padding: 1.5rem 0 1rem;
+  font-size: 0.85rem;
+  color: var(--color-foreground-secondary);
+}
+.nexus-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.nexus-footer__brand strong {
+  display: block;
+  color: var(--color-foreground-primary);
+}
+.nexus-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.nexus-footer__label {
+  font-weight: bold;
+  color: var(--color-foreground-primary);
+}
+.nexus-footer__links a {
+  color: var(--color-foreground-secondary);
+  text-decoration: none;
+}
+.nexus-footer__links a:hover {
+  color: var(--color-brand-primary);
+}
+.nexus-footer__legal {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+</style>
+
+{% endblock footer %}
